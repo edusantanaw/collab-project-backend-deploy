@@ -1,7 +1,7 @@
 import { IForgetPassword } from "../../../domain/usecases/forgetPassword";
 import { data } from "../../../utils/senderMail";
 import { ILoadUserByEmailRepository } from "../../protocols/repositories/authRepository";
-import { randomUUID } from "node:crypto";
+import { randomUUID } from "crypto";
 
 interface ISendMail {
   send: (data: data) => Promise<void>;
