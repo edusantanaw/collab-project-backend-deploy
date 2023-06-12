@@ -16,6 +16,7 @@ export class CreateUserUsecase implements ICreateUsecase<IUserSchema, executeRes
   ) {}
 
   public async execute(data: IUserSchema): Promise<executeResponse> {
+    console.log("signup");
     const emailAlreadyUsed = !!(await this.userRepository.loadByEmail(
       data.email
     ));
