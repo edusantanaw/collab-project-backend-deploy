@@ -1,0 +1,166 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id
+  name          String
+  email         String          @unique
+  password      String
+  roles         String[]
+  perfilPhoto   String?
+  bio           String?
+  Project       Project[]
+  Collaborators Collaborators[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now()) @updatedAt
+  Invites       Invites[]
+  Task          Task[]
+  Message       Message[]
+  Post          Post[]
+  Likes         Likes[]
+  followers     Follows[]       @relation("follower")
+  following     Follows[]       @relation("following")
+  Comments      Comments[]
+
+  @@map("users")
+}
+
+model Follows {
+  follower    User   @relation("following", fields: [followerId], references: [id])
+  followerId  String
+  following   User   @relation("follower", fields: [followingId], references: [id])
+  followingId String
+
+  @@id([followerId, followingId])
+  @@map("follows")
+}
+
+model Post {
+  id        String     @id
+  image     String?
+  content   String?
+  user      User       @relation(fields: [userId], references: [id])
+  userId    String
+  Comments  Comments[]
+  Likes     Likes[]
+  createdAt DateTime   @default(now())
+
+  @@map("post")
+}
+
+model Comments {
+  id        String      @id
+  post      Post?       @relation(fields: [postId], references: [id])
+  postId    String?
+  content   String
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime    @default(now())
+  comment   Responses[] @relation("comment")
+  response  Responses[] @relation("response")
+
+  @@map("comment")
+}
+
+model Responses {
+  comment    Comments @relation("response", fields: [commentId], references: [id])
+  commentId  String
+  response   Comments @relation("comment", fields: [responseId], references: [id])
+  responseId String
+
+  @@id([commentId, responseId])
+  @@map("response")
+}
+
+model Likes {
+  id     String @id
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  @@map("like")
+}
+
+model Project {
+  id            String          @id
+  name          String
+  description   String
+  user          User            @relation(fields: [ownerId], references: [id])
+  ownerId       String
+  perfilImage   String?
+  Collaborators Collaborators[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now()) @updatedAt
+  Invites       Invites[]
+  Task          Task[]
+
+  @@map("project")
+}
+
+model Collaborators {
+  id        String  @id
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
+
+  @@map("collaborators")
+}
+
+model Invites {
+  id        String   @id
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
+  invited   User     @relation(fields: [invitedId], references: [id])
+  accepted  Boolean?
+  invitedId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("invites")
+}
+
+model Task {
+  id          String   @id
+  project     Project  @relation(fields: [projectId], references: [id])
+  projectId   String
+  title       String
+  description String
+  done        Boolean  @default(false)
+  user        User?    @relation(fields: [assignedTo], references: [id])
+  assignedTo  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+
+  @@map("task")
+}
+
+model Message {
+  id        String   @id
+  message   String?
+  file      String?
+  room      String
+  user      User     @relation(fields: [senderId], references: [id])
+  senderId  String
+  createdAt DateTime @default(now())
+
+  @@map("message")
+}
+
+model Room {
+  id          String @id
+  followingId String
+  userId      String
+
+  @@map("room")
+}

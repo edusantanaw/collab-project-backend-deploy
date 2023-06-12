@@ -1,0 +1,5 @@
+node_modules
+env
+prisma/migrations
+yarn.lock
+public
