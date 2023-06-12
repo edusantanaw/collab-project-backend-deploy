@@ -1,0 +1,31 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const auth_adapter_1 = require("../adapter/auth-adapter");
+const acceptOrDeclineInvite_1 = require("../factories/controllers/project/acceptOrDeclineInvite");
+const inviteController_1 = require("../factories/controllers/project/inviteController");
+const loadCollabs_1 = require("../factories/controllers/project/loadCollabs");
+const loadIAllInvites_1 = require("../factories/controllers/user/loadIAllInvites");
+const loadProjectById_1 = require("../factories/controllers/project/loadProjectById");
+const createProject_1 = require("../factories/controllers/project/createProject");
+const createTask_1 = require("../factories/controllers/project/createTask");
+const loadTask_1 = require("../factories/controllers/project/loadTask");
+const loadAllMessages_1 = require("../factories/controllers/project/loadAllMessages");
+const loadByName_1 = require("../factories/controllers/project/loadByName");
+const loadUserProject_1 = require("../factories/controllers/project/loadUserProject");
+const finishTask_1 = require("../factories/controllers/project/finishTask");
+const authAdapter = new auth_adapter_1.UserAdapter();
+function default_1(router) {
+    router.post("/project", authAdapter.make((0, createProject_1.makeNewProjectController)()));
+    router.post("/project/invite/:projectId", authAdapter.make((0, inviteController_1.makeInviteCollaboratorController)()));
+    router.post("/project/task", authAdapter.make((0, createTask_1.makeCreateTaskController)()));
+    router.get("/project/user/:id", authAdapter.make((0, loadUserProject_1.makeLoadUserProjectController)()));
+    router.get("/projects/invites/:id", authAdapter.make((0, loadIAllInvites_1.makeLoadAllInvitesController)()));
+    router.patch("/project/invite/:inviteId", authAdapter.make((0, acceptOrDeclineInvite_1.makeAcceptOrDeclieInviteController)()));
+    router.get("/project/collabs/:id", authAdapter.make((0, loadCollabs_1.makeLoadCollabsController)()));
+    router.get("/project/tasks/:projectId", authAdapter.make((0, loadTask_1.makeLoadTaskControlle)()));
+    router.get("/project/messages", authAdapter.make((0, loadAllMessages_1.makeLoadAllMessagesController)()));
+    router.get("/project/search/:name", authAdapter.make((0, loadByName_1.makeLoadProjectByName)()));
+    router.get("/project/:id", authAdapter.make((0, loadProjectById_1.makeLoadProjectByIdController)()));
+    router.patch("/project/task/finish/:id", authAdapter.make((0, finishTask_1.makeFinishTaskController)()));
+}
+exports.default = default_1;

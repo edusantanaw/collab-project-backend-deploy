@@ -1,0 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
+    host: "smtp.gmail.com",
+    port: 587,
+    user: "edujobssearch@gmail.com",
+    pass: "rcfp uqkz ejjr hhen",
+};
