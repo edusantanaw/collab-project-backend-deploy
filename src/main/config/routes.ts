@@ -1,8 +1,8 @@
 import { Express, Router } from "express"
-import chatRouter from '../routes/chat-routes'
-import postRouter from '../routes/post-routes'
-import userRouter from '../routes/user-routes'
-import projectRouter from '../routes/project-routes'
+import {router: chatRouter} from '../routes/chat-routes'
+import {router: postRouter} from '../routes/post-routes'
+import {router: userRouter} from '../routes/user-routes'
+import {router: projectRouter} from '../routes/project-routes'
 
 export default async(app: Express) =>{
   app.get("/ping", (req, res)=> {
