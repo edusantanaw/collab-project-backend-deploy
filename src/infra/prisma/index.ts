@@ -30,3 +30,5 @@ export {
   likes,
   room  
 };
+
+export default prisma;
