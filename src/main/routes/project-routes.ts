@@ -16,7 +16,7 @@ import {Router} from 'express';
 
 const authAdapter = new UserAdapter();
 
-export default const router = Router();
+export  const router = Router();
   router.post("/project", authAdapter.make(makeNewProjectController()));
   router.post(
     "/project/invite/:projectId",
