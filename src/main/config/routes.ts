@@ -5,8 +5,8 @@ import userRouter from '../routes/user-routes'
 import projectRouter from '../routes/project-routes'
 
 export default async(app: Express) =>{
-  app.use(/"api", chatRouter);
-  app.use(/"api", postRouter);
-  app.use(/"api", userRouter);
-  app.use(/"api", projectRouter);
+  app.use("/api", chatRouter);
+  app.use("/api", postRouter);
+  app.use("/api", userRouter);
+  app.use("/api", projectRouter);
 }
