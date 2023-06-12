@@ -5,7 +5,7 @@ import { makeLoadRecentMessagesController } from "../factories/controllers/chat/
 import { makeLoadRoomController } from "../factories/controllers/chat/loadRoom";
 import {Router} from 'express';
 
-export default const router = Router();
+export const router = Router();
 const authAdapter = new UserAdapter();
 
 router.get("/chat/room/:userId", authAdapter.make(makeLoadRoomController()));
