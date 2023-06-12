@@ -10,9 +10,10 @@ const cors_1 = __importDefault(require("cors"));
 const http_1 = __importDefault(require("http"));
 const socket_1 = __importDefault(require("./routes/socket"));
 const socket_2 = __importDefault(require("./config/socket"));
+const PORT = process.env.PORT;
 class Server {
     app = (0, express_1.default)();
-    PORT = 3000;
+    PORT = PORT ?? 3000;
     server = http_1.default.createServer(this.app);
     io = (0, socket_2.default)(this.server);
     middlewares() {

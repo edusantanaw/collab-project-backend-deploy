@@ -58,8 +58,6 @@ class PostRepository {
             });
         }
         catch (error) {
-            // Already deleted
-            // Capture a possible error if then user spams the like button
         }
     }
     async loadLikes(id) {

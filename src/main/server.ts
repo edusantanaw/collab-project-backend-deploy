@@ -4,9 +4,11 @@ import http from "http";
 import socket from "./routes/socket";
 import socketConfig from "./config/socket";
 
+const PORT = process.env.PORT as number | undefined
+
 export class Server {
   private app = express();
-  private PORT: number = 3000;
+  private PORT: number = PORT ?? 3000;
   private server = http.createServer(this.app);
   private io = socketConfig(this.server);
   
