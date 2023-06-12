@@ -31,5 +31,5 @@ const fast_glob_1 = __importDefault(require("fast-glob"));
 exports.default = async (app) => {
     const router = (0, express_1.Router)();
     app.use("/api", router);
-    fast_glob_1.default.sync("**/src/main/routes/**routes.ts").forEach(async (file) => { var _a; return (await (_a = `../../../${file}`, Promise.resolve().then(() => __importStar(require(_a))))).default(router); });
+    fast_glob_1.default.sync("**/src/main/routes/**routes.js").forEach(async (file) => { var _a; return (await (_a = `../../../${file}`, Promise.resolve().then(() => __importStar(require(_a))))).default(router); });
 };
