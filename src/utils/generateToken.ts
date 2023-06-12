@@ -1,6 +1,6 @@
 import { IGenerateToken } from "../data/protocols/helpers/generateToken";
 import jwt from "jsonwebtoken";
-import { promisify } from "node:util";
+import { promisify } from "util";
 import { IUser } from "../types/user";
 
 export class JwtToken implements IGenerateToken {
