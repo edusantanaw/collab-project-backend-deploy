@@ -16,7 +16,7 @@ import {Router} from 'express';
 const adapter = new Adapter();
 const authAdapter = new UserAdapter();
 
-export default router = Router(); 
+export default const router = Router(); 
   router.post("/signup", adapter.make(makeCreateUserController()));
   router.post("/signin", adapter.make(makeAuthController()));
   router.get(
