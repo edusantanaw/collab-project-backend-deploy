@@ -7,10 +7,11 @@ import { makeLoadCommentsController } from "../factories/controllers/post/loadCo
 import { makeLoadLikeController } from "../factories/controllers/post/loadLike";
 import { makeLoadPostByUserController } from "../factories/controllers/post/loadPostByUser";
 import { fileUpload } from "../middlewares/upload-file";
+import {Router} from 'express';
 
 const authAdapter = new UserAdapter();
 
-export default function (router: Router) {
+export default const router = Router();
   router.post(
     "/post",
     fileUpload,
@@ -31,4 +32,3 @@ export default function (router: Router) {
     "/post/comment/:id",
     authAdapter.make(makeLoadCommentsController())
   );
-}
