@@ -11,11 +11,12 @@ import { makeLoadFollowController } from "../factories/controllers/user/loadFoll
 import { makeRecoveryPasswordController } from "../factories/controllers/user/recoveryPassword";
 import { makeUpdateUserController } from "../factories/controllers/user/update";
 import { fileUpload } from "../middlewares/upload-file";
+import {Router} from 'express';
 
 const adapter = new Adapter();
 const authAdapter = new UserAdapter();
 
-export default function (router: Router) {
+export default router = Router(); 
   router.post("/signup", adapter.make(makeCreateUserController()));
   router.post("/signin", adapter.make(makeAuthController()));
   router.get(
@@ -40,4 +41,3 @@ export default function (router: Router) {
     "/follow/following/:id",
     authAdapter.make(makeLoadFollowController())
   );
-}
