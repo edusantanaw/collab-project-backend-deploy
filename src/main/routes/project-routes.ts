@@ -12,10 +12,11 @@ import { makeLoadAllMessagesController } from "../factories/controllers/project/
 import { makeLoadProjectByName } from "../factories/controllers/project/loadByName";
 import { makeLoadUserProjectController } from "../factories/controllers/project/loadUserProject";
 import { makeFinishTaskController } from "../factories/controllers/project/finishTask";
+import {Router} from 'express';
 
 const authAdapter = new UserAdapter();
 
-export default function (router: Router) {
+export default const router = Router();
   router.post("/project", authAdapter.make(makeNewProjectController()));
   router.post(
     "/project/invite/:projectId",
@@ -55,4 +56,3 @@ export default function (router: Router) {
     "/project/task/finish/:id",
     authAdapter.make(makeFinishTaskController())
   );
-}
