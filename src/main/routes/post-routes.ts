@@ -11,7 +11,7 @@ import {Router} from 'express';
 
 const authAdapter = new UserAdapter();
 
-export default const router = Router();
+export  const router = Router();
   router.post(
     "/post",
     fileUpload,
