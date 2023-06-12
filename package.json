@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --clear index.ts",
     "build": "tsc",
-    "start": "ts-node-dev --respawn --transpile-only --clear index.ts"
+    "start": "node ./dist/index.js"
   },
   "keywords": [],
   "author": "",
