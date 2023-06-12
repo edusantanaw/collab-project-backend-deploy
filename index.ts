@@ -1,5 +1,5 @@
 import { Server } from "./src/main/server";
-import prisma from '../infra/prisma';
+import prisma from './src/infra/prisma';
 
 const server  = new Server();
 
